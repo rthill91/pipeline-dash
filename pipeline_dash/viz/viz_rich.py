@@ -64,7 +64,9 @@ def add_jobs_to_table(
             table.rows[-1].style = "dim"
         progress_task_fn()
     else:
-        table.add_row(prefix + name, style="bold")
+        table.add_section()
+        ds_status = status(JobStatus[job_struct['downstream_status'].upper().replace(' ', '_')])
+        table.add_row(prefix + name, "", "" ,"", ds_status, style="bold")
 
     for next_name in job_struct['children']:
         prefix = add_prefix(prefix)
